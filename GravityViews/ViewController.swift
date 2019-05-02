@@ -1,18 +1,21 @@
-//
-//  ViewController.swift
-//  GravityViews
-//
-//  Created by Артем on 5/2/19.
-//  Copyright © 2019 Артем. All rights reserved.
-//
 
 import UIKit
 
 class ViewController: UIViewController {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let ball = Ball(dataBall: DataBall(maxX: Int(self.view.bounds.size.width), maxY: Int(self.view.bounds.size.height)))
+        self.view.addSubview(ball)
+        
+        let ball1 = Ball(dataBall: DataBall(maxX: Int(self.view.bounds.size.width), maxY: Int(self.view.bounds.size.height)))
+        self.view.addSubview(ball1)
+        
+        let ball2 = Ball(dataBall: DataBall(maxX: Int(self.view.bounds.size.width), maxY: Int(self.view.bounds.size.height)))
+        self.view.addSubview(ball2)
+        
     }
 
 
