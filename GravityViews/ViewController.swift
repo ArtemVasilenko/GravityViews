@@ -1,23 +1,35 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, GetBalls {
+    var arrVcs = [Ball]()
+    var dataBall: DataBall!
     
+    var animator = UIDynamicAnimator()
+    var collision = UICollisionBehavior()
+    var gravity = UIGravityBehavior()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let ball = Ball(dataBall: DataBall(maxX: Int(self.view.bounds.size.width), maxY: Int(self.view.bounds.size.height)))
-        self.view.addSubview(ball)
+        dataBall = DataBall(maxX: Int(self.view.frame.maxX), maxY: Int(self.view.frame.maxY))
         
-        let ball1 = Ball(dataBall: DataBall(maxX: Int(self.view.bounds.size.width), maxY: Int(self.view.bounds.size.height)))
-        self.view.addSubview(ball1)
+        arrVcs += getBalls(dataBall)
         
-        let ball2 = Ball(dataBall: DataBall(maxX: Int(self.view.bounds.size.width), maxY: Int(self.view.bounds.size.height)))
-        self.view.addSubview(ball2)
+        arrVcs.forEach {
+            self.view.addSubview($0)
+        }
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        animator = UIDynamicAnimator(referenceView: self.view)
+        gravity = UIGravityBehavior(items: arrVcs)
+        collision = UICollisionBehavior(items: arrVcs)
+        collision.translatesReferenceBoundsIntoBoundary = true
+        animator.addBehavior(gravity)
+        animator.addBehavior(collision)
         
     }
-
-
 }
 
