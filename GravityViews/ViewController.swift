@@ -29,7 +29,6 @@ class ViewController: UIViewController, GetBalls {
         collision.translatesReferenceBoundsIntoBoundary = true
         animator.addBehavior(gravity)
         animator.addBehavior(collision)
-        
     }
 }
 
